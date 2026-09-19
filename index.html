@@ -1,58 +1,93 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IVYSKY: World of Life</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div>
-        <p class="eyebrow">IVYSKY STUDIOS PRESENTS</p>
-        <h1>IVYSKY <span>WORLD OF LIFE</span></h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IVYSKY: WORLD OF LIFE</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="eyebrow">IVYSKY STUDIOS PRESENTS</div>
+          <h1>IVYSKY <span>WORLD OF LIFE</span></h1>
+        </div>
+
+        <div class="header-strip">
+          <div class="pill" id="timePill">SUNNY · 14:00</div>
+          <div class="money-stack">
+            <span>Cash</span>
+            <strong id="cashValue">₦0</strong>
+          </div>
+          <div class="money-stack">
+            <span>Bank</span>
+            <strong id="bankValue">₦0</strong>
+          </div>
+          <button id="phoneBtn">Phone</button>
+          <button id="saveBtn">Save</button>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="world-panel">
+          <div class="location-bar">
+            <span id="countryLabel">Nigeria</span>
+            <strong id="cityLabel">Lagos</strong>
+            <small id="districtLabel">Marina waterfront</small>
+          </div>
+          <canvas id="worldCanvas" width="980" height="620"></canvas>
+          <div class="world-help">
+            Move: WASD / arrow keys • Interact: E • Phone: P • Map: M • Vehicle: V • Cheat: type MONEYMAN
+          </div>
+        </section>
+
+        <aside class="sidebar">
+          <section class="card profile-card">
+            <div class="avatar">A</div>
+            <div>
+              <div class="tiny-label">CITIZEN</div>
+              <h2 id="playerName">Ayo Sterling</h2>
+              <p id="careerLabel">Freelance entrepreneur</p>
+            </div>
+          </section>
+
+          <section class="card stats-grid">
+            <div><span>Fame</span><strong id="fameValue">0</strong></div>
+            <div><span>Health</span><strong id="healthValue">100%</strong></div>
+            <div><span>Energy</span><strong id="energyValue">100%</strong></div>
+            <div><span>Wanted</span><strong id="wantedValue">None</strong></div>
+          </section>
+
+          <section class="card actions-card">
+            <h3>Life systems</h3>
+            <button class="action-button" data-panel="map">🗺 World map</button>
+            <button class="action-button" data-panel="phone">📱 Smartphone</button>
+            <button class="action-button" data-panel="jobs">💼 Jobs</button>
+            <button class="action-button" data-panel="property">🏠 Property</button>
+            <button class="action-button" data-panel="business">🏢 Business</button>
+            <button class="action-button" data-panel="vehicles">🚘 Garage</button>
+          </section>
+
+          <section class="card mission-card">
+            <div class="tiny-label">ACTIVE OBJECTIVE</div>
+            <h3 id="missionTitle">Build your foundation</h3>
+            <p id="missionText">Earn your first income, buy a vehicle, and begin creating wealth.</p>
+            <button id="missionBtn">Update mission</button>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <div id="modal" class="modal hidden">
+      <div class="modal-card">
+        <button id="closeModal" class="close-btn">×</button>
+        <div id="modalContent"></div>
       </div>
-      <div class="top-actions">
-        <span class="pill" id="weatherPill">SUNNY · 14:20</span>
-        <button id="phoneBtn">📱 Phone</button>
-        <button id="saveBtn">Save</button>
-      </div>
-    </header>
+    </div>
 
-    <main class="game-layout">
-      <section class="world-panel">
-        <div class="location-bar"><span id="countryName">Nigeria</span><b id="cityName">Lagos</b><small id="districtName">Marina waterfront</small></div>
-        <canvas id="world" width="1000" height="620" aria-label="Playable IVYSKY world"></canvas>
-        <div class="world-help">WASD / arrow keys to move · E interact · V enter vehicle · M map · P phone</div>
-      </section>
+    <div id="toast" class="toast"></div>
 
-      <aside class="dashboard">
-        <section class="card profile-card">
-          <div class="avatar">◆</div>
-          <div><span class="muted">CITIZEN</span><h2 id="playerName">Ayo Sterling</h2><p id="jobText">Independent explorer</p></div>
-        </section>
-        <section class="card stats">
-          <div><span>Cash</span><strong id="cash">₦85,000</strong></div>
-          <div><span>Bank</span><strong id="bank">₦240,000</strong></div>
-          <div><span>Assets</span><strong id="assets">1</strong></div>
-          <div><span>Wanted</span><strong id="wanted">None</strong></div>
-        </section>
-        <section class="card quick-menu">
-          <h3>Life systems</h3>
-          <button data-panel="map">🗺 World map <span>12 regions</span></button>
-          <button data-panel="phone">📱 Smartphone <span>messages</span></button>
-          <button data-panel="business">💼 Businesses <span>1 opportunity</span></button>
-          <button data-panel="property">🏠 Properties <span>browse listings</span></button>
-          <button data-panel="vehicle">🚘 Vehicles <span>garage</span></button>
-        </section>
-        <section class="card mission-card"><span class="muted">AVAILABLE ACTIVITY</span><h3>First Steps</h3><p>Visit the Azureline Dealership in Marina and test-drive an original Velora S1.</p><button id="missionBtn">Track activity</button></section>
-      </aside>
-    </main>
-  </div>
-
-  <div class="modal hidden" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
-  <div class="toast" id="toast"></div>
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
